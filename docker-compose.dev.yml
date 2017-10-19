@@ -1,0 +1,36 @@
+#mysql
+db:
+  image: mariadb:latest
+  environment:
+    MYSQL_DATABASE: shakeitup
+    MYSQL_USER: shakeitup
+    MYSQL_PASSWORD: shakeitup
+    MYSQL_ROOT_PASSWORD: shakeitup
+
+#mailcatcher
+mailcatcher:
+  image: yappabe/mailcatcher
+
+#wordpress
+wordpress:
+  build: .
+  links:
+    - db
+    - mailcatcher
+  environment:
+    TERM: xterm
+  volumes:
+    - .:/var/www/html
+    - ~/.composer:/var/www/.composer
+
+#nginx
+nginx:
+  image: nginx:stable
+  links:
+    - wordpress
+    - mailcatcher
+  ports:
+    - 3000:80
+  volumes:
+    - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    - .:/var/www/html:ro

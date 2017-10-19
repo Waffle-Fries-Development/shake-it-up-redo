@@ -1,0 +1,65 @@
+{
+    "name": "haydenk/re-shake-it-up",
+    "type": "project",
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "wordpress/wordpress",
+                "type": "wordpress-core",
+                "version": "4.7.2",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/WordPress/WordPress/archive/4.7.2.zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "rodrigoprimo/social-connect",
+                "type": "wordpress-plugin",
+                "version": "1.2",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/rodrigoprimo/social-connect/archive/1.2.zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "wp-plugins/wp-user-avatar",
+                "type": "wordpress-plugin",
+                "version": "1.9.13",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/wp-plugins/wp-user-avatar/archive/1.9.13.zip"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "wordpress/wordpress": "*",
+        "haydenk/wordpress-core-installer": "^0.2",
+        "twig/twig": "^1.24",
+        "incenteev/composer-parameter-handler": "^2.0",
+        "wp-plugins/wp-user-avatar": "*",
+        "humanmade/s3-uploads": "^1.1",
+        "redux-framework/redux-framework": "^3.6",
+        "rodrigoprimo/social-connect": "*"
+    },
+    "require-dev": {
+        "wp-cli/wp-cli": "^0.24.1"
+    },
+    "extra": {
+        "wordpress-install-dir": {
+            "wordpress/wordpress": "web/wp"
+        },
+        "installer-paths": {
+            "web/wp-content/plugins/{$name}/": ["type:wordpress-plugin"]
+        }
+    }
+}

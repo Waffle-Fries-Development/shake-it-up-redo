@@ -1,0 +1,23 @@
+#wordpress
+wordpress:
+  build: .
+  container_name: wordpress
+  extra_hosts:
+    - "mysql_db:10.132.85.53"
+  environment:
+    TERM: xterm
+  volumes:
+    - .:/var/www/html
+    - ~/.composer:/var/www/.composer
+
+#nginx
+nginx:
+  image: nginx:stable
+  container_name: wp_nginx
+  links:
+    - wordpress
+  ports:
+    - 80:80
+  volumes:
+    - ./nginx/conf.d:/etc/nginx/conf.d/
+    - .:/var/www/html
